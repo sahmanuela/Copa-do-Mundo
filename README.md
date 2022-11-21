@@ -39,18 +39,4 @@ Para trabalhos em dupla deve-se apresentar mais duas funções ou procedimentos,
 - Apagar jogo
 - Localizar e apagar um jogo existente no arquivo.
 
-Enviar pelo SIGAA na Tarefa especificada para o trabalho final o arquivo fonte (.py) com o algoritmo desenvolvido;
-Salve o arquivo fonte com o nome do autor, seguido da palavra TF (ex.: NomeTF.py).
-Lembre-se também de colocar o nome dos autores e a turma no início do programa em uma linha de comentário.
-Avaliação
-No dia 05/12/2022 será realizada a apresentação dos trabalhos, onde os estudantes terão até 10min para apresentar os seus trabalhos (somente o código fonte), evidenciando problemas não resolvidos até o momento e até mesmo as suas principais dificuldades (em caso de duplas, ambos precisam apresentar);
-A data de entrega do trabalho final é 05/12/2022 até as 23:59.
-O trabalho final tem peso 10 (na soma de todas as atividades avaliativas realizadas durante a disciplina).
-O códigos-fonte serão avaliados conforme:
-enviado de forma correta conforme os critérios e observações estabelecidos;
-se o resultado está de acordo com o que é esperado;
-se tem comentários;
-se a apresentação foi adequada;
-Em caso de cópia de trabalhos, será atribuída nota 0 ao trabalho final (tanto para quem forneceu, quanto para quem copiou).
-O objetivo do trabalho final é que os estudantes demonstrem capacidade técnica para manipular listas, funções ou procedimentos, arquivos e strings.
-Observe que o algoritmo deverá funcionar para qualquer termo inserido no arquivo (incluindo maiúsculo/minúsculo).
+O objetivo do trabalho final é que os estudantes demonstrem capacidade técnica para manipular listas, funções ou procedimentos, arquivos e strings. Observe que o algoritmo deverá funcionar para qualquer termo inserido no arquivo (incluindo maiúsculo/minúsculo).
