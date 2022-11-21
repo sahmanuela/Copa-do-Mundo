@@ -4,6 +4,16 @@ print('-=' * 20)
 print('{:^40}'.format('COPA DO MUNDO'))
 print('-=' * 20)
 
+def novaEquipe(pais, abreviacao, grupo):
+    while True:
+        pais = input('Insira o país: ')
+        abreviacao = input('Insira a abreviação do país: ')
+        grupo = input('Insira o grupo do país: ')
+        
+
+def novoJogo(dadosEquipe, gols, faltas ):
+    quit()
+
 opcao = 0
 while opcao != 8:
     print('--' * 20)
@@ -17,7 +27,9 @@ while opcao != 8:
         break
 
     elif opcao == 2:
-        break
+        with open ("nova-equipe.txt", "a+") as arquivo:
+            for linha in arquivo.readlines():
+                print(linha)
         
 
     elif opcao == 3:
