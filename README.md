@@ -3,7 +3,7 @@
 - Samantha Manuela Ferri Tavares
 - João Victor Alegri Dias
 
-Descrição: Em função da Copa do Mundo de Futebol, um amigo solicitou que você faça um programa que o ajude a gerenciar as informações sobre a competição
+Descrição: Em função da Copa do Mundo de Futebol, um amigo solicitou que você faça um programa que o ajude a gerenciar as informações sobre a competição.
 Para isto, você deverá implementar em Python este programa, que deverá utilizar arquivo(s) de texto, para armazenar os dados referentes aos times e aos jogos.
 Exibir um menu para o usuário selecionar o que ele deseja fazer, com as seguintes opções:
 
@@ -30,7 +30,7 @@ O programa principal deverá ficar exibindo o menu e solicitando ao usuário o q
 Deve-se realizar o controle de erro, para evitar que o usuário utilize, por exemplo, a opção 10 sendo que esta não existe no menu;
 Cada equipe poderá ter vinculada a vários jogos;
 
-Instruções
+Instruções:
 O trabalho é individual;
 Para trabalhos em dupla deve-se apresentar mais duas funções ou procedimentos, sendo:
 
