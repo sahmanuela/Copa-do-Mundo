@@ -1,10 +1,7 @@
-# Copa-do-mundo-algoritmos
+# Copa do mundo
 
-# Samantha Manuela Ferri Tavares
-
-# João Victor Alegri Dias
-
-# Algoritmos II
+Samantha Manuela Ferri Tavares
+João Victor Alegri Dias
 
 Descrição: Em função da Copa do Mundo de Futebol, um amigo solicitou que você faça um programa que o ajude a gerenciar as informações sobre a competição
 Para isto, você deverá implementar em Python este programa, que deverá utilizar arquivo(s) de texto, para armazenar os dados referentes aos times e aos jogos.
