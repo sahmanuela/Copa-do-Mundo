@@ -27,7 +27,7 @@ def salvar_times_file():
     with open('times_copa.json', 'a+') as times_file:
         times_file.seek(0)
         #dumps -> transformar dicionário em json (formatar o resultado)
-        times_file.write(json.dumps(times))  
+        times_file.write(json.dumps(times))
 
 #Função para criar um time novo, uma nova equipe
 def novoTime():
@@ -54,10 +54,10 @@ def novoTime():
 
 #Função para listar os times existentes -> País - Abreviação - Grupo
 def listarTimes(times):
-  if len(times) == 0:
-    print("Não há seleções cadastradas")
-  for time in times:
-    print(f"Seleção: {time.get('Pais')} - {time.get('Abreviacao')} - Grupo: {time.get('Grupo')}")
+        if len(times) == 0:
+            print("Não há seleções cadastradas")
+        for time in times:
+            print(f"Seleção: {time.get('Pais')} - {time.get('Abreviacao')} - Grupo: {time.get('Grupo')}")
 
 #Função para listar os times existentes separando por GRUPOS
 def listarGrupo():
