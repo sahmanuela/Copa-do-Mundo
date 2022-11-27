@@ -6,15 +6,20 @@ import time
 print("--" * 20)
 print("{:^40}".format("COPA DO MUNDO"))
 
-# Criação do arquivo times_copa.json -> a+ O arquivo é criado/aberto para adição de caracteres no fim.
-with open("times_copa.json", "a+") as times_file:
+times_file_name = "times_copa.json"
 
-    if len(times_file.readline()) > 0:
-        # seek -> mover o cursor para o início do arquivo para poder carregar tudo ou salvar tudo a partir do inicio.
-        times_file.seek(0)
-        times = json.load(times_file)
-    else:
-        times = list()
+# Check if file exists
+if os.path.isfile(times_file_name) is False:
+    times = list()
+else:
+    # Criação do arquivo times_copa.json
+    with open(times_file_name, "r") as times_file:
+        if len(times_file.readline()) > 0:
+            # seek -> mover o cursor para o início do arquivo para poder carregar tudo ou salvar tudo a partir do inicio.
+            times_file.seek(0)
+            times = json.load(times_file)
+        else:
+            times = list()
 
 # Sair do programa
 def sairPrograma():
@@ -25,10 +30,8 @@ def sairPrograma():
 
 # Salvar os times no arquivo times_copa.
 def salvar_times_file():
-    with open("times_copa.json", "a+") as times_file:
-        times_file.seek(0)
-        # dumps -> transformar dicionário em json (formatar o resultado)
-        times_file.write(json.dumps(times))
+    with open("times_copa.json", "w") as times_file:
+        json.dump(times, times_file)
 
 
 # Função para criar um time novo, uma nova equipe
