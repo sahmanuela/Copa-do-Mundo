@@ -54,10 +54,12 @@ def novoTime():
 
 #Função para listar os times existentes -> País - Abreviação - Grupo
 def listarTimes(times):
-        if len(times) == 0:
-            print("Não há seleções cadastradas")
-        for time in times:
-            print(f"Seleção: {time.get('Pais')} - {time.get('Abreviacao')} - Grupo: {time.get('Grupo')}")
+        with open("times_copa.json", "r+") as times_file:
+            times_file.seek(0)
+            if len(times) == 0:
+                print("Não há seleções cadastradas")
+            for time in times:
+                print(f"Seleção: {time.get('Pais')} - {time.get('Abreviacao')} - Grupo: {time.get('Grupo')}")
 
 #Função para listar os times existentes separando por GRUPOS
 def listarGrupo():
@@ -67,6 +69,13 @@ def listarGrupo():
 
 def apagarArquivo():
     os.remove('times_copa.json')
+
+
+#Função Pesquisa por país 
+
+def pesquisarpais():
+   searchPais = input("Informe o país que deseja encontrar:  ")
+
 
 #MENU ->
 opcao = 0
