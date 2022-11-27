@@ -21,7 +21,7 @@ else:
         else:
             times = list()
 
-# Sair do programa
+# Função 1 - Sair do programa
 def sairPrograma():
     print("Você está saindo do programa...")
     time.sleep(1)
@@ -34,7 +34,7 @@ def salvar_times_file():
         json.dump(times, times_file)
 
 
-# Função para criar um time novo, uma nova equipe
+# Função 2 - para criar um time novo, uma nova equipe
 def novoTime():
     salvar_times = False
     # Controle para continuar a cadastrar novos times
@@ -69,13 +69,22 @@ def listarTimes(times):
             )
 
 
-# Função para listar os times existentes separando por GRUPOS
+# Função 8 - para listar os times existentes separando por GRUPOS
 def listarGrupo():
     grupo = input("Grupo que deseja consultar: ").upper()
     # Manipulação de lista
     listarTimes([time for time in times if time.get("Grupo") == grupo])
 
+#Função 9 - Pesquisar Jogo por país 
+def pesquisajogo():
 
+    quit()
+    #como ler o arquivo .json?
+    #como percorrer para "pesquisar"
+
+
+
+#Função 10 - Apagar Jogo
 def apagarArquivo():
     os.remove("times_copa.json")
 
