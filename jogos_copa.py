@@ -7,6 +7,7 @@ print("--" * 20)
 print("{:^40}".format("COPA DO MUNDO"))
 
 times_file_name = "times_copa.json"
+jogos_file_name = "jogos_copa.json"
 
 # Check if file exists
 if os.path.isfile(times_file_name) is False:
@@ -14,6 +15,19 @@ if os.path.isfile(times_file_name) is False:
 else:
     # Criação do arquivo times_copa.json
     with open(times_file_name, "r") as times_file:
+        if len(times_file.readline()) > 0:
+            # seek -> mover o cursor para o início do arquivo para poder carregar tudo ou salvar tudo a partir do inicio.
+            times_file.seek(0)
+            times = json.load(times_file)
+        else:
+            times = list()
+
+# Check if file exists
+if os.path.isfile(jogos_file_name) is False:
+    jogos = list()
+else:
+    # Criação do arquivo times_copa.json
+    with open(jogos_file_name, "r") as jogos_file:
         if len(times_file.readline()) > 0:
             # seek -> mover o cursor para o início do arquivo para poder carregar tudo ou salvar tudo a partir do inicio.
             times_file.seek(0)
@@ -35,7 +49,7 @@ def salvar_times_file():
 
 
 # Função 2 - para criar um time novo, uma nova equipe
-def novoTime():
+def novo_time():
     salvar_times = False
     # Controle para continuar a cadastrar novos times
     while not salvar_times:
@@ -51,7 +65,7 @@ def novoTime():
                 print("Este grupo já possui 4 seleções!\nEscolha outro grupo.")
             else:
                 add_grupo = True
-        times.append({"Pais": pais, "Abreviacao": abreviacao, "Grupo": grupo})
+        times.append({"id": len(times) + 1, "Pais": pais, "Abreviacao": abreviacao, "Grupo": grupo})
 
         if input("Cadastrar outra seleção(S/N): ").upper() != "S":
             salvar_times = True
@@ -107,7 +121,7 @@ while opcao != 1:
 
     # Caso o usuário digite 2, ele poderá criar um ou mais times/equipes
     elif opcao == 2:
-        novoTime()
+        novo_time()
 
     # Caso o usuário digite 3, ele irá visualizar os times/equipes cadastrados
     elif opcao == 3:
