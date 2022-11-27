@@ -1,1 +1,4 @@
-[{"Pais": "Brasil", "Abreviacao": "BRA", "Grupo": "B"}, {"Pais": "Alemanha", "Abreviacao": "ALE", "Grupo": "B"}]
+[
+  { "Pais": "Brasil", "Abreviacao": "BRA", "Grupo": "B" },
+  { "Pais": "Alemanha", "Abreviacao": "ALE", "Grupo": "B" }
+]
