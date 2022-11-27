@@ -1,1 +1,7 @@
-[{"Pais": "Brasil", "Abreviacao": "Br", "Grupo": "B"}][{"Pais": "Alemanha", "Abreviacao": "ALE", "Grupo": "C"}, {"Pais": "Eslov\u00eavia", "Abreviacao": "ESL", "Grupo": "C"}][{"Pais": "Alemanha", "Abreviacao": "ALE", "Grupo": "C"}, {"Pais": "Eslov\u00eavia", "Abreviacao": "ESL", "Grupo": "C"}, {"Pais": "Brasil", "Abreviacao": "BRA", "Grupo": "B"}]
+[
+  { "Pais": "Brasil", "Abreviacao": "BRA", "Grupo": "B" },
+  { "Pais": "Alemanha", "Abreviacao": "ALE", "Grupo": "B" },
+  { "Pais": "Italia", "Abreviacao": "ITA", "Grupo": "A" },
+  { "Pais": "Franca", "Abreviacao": "FRA", "Grupo": "A" }
+]
+[{"Pais": "Austr\u00e1lia", "Abreviacao": "AUST", "Grupo": "D"}]
