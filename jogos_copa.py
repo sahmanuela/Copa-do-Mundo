@@ -3,7 +3,7 @@ import os
 import time
 
 #Início do programa -> Formatação inicial
-print('--' * 2000000000000000)
+print('--' * 20)
 print('{:^40}'.format('COPA DO MUNDO'))
 
 #Criação do arquivo times_copa.json -> a+ O arquivo é criado/aberto para adição de caracteres no fim.
