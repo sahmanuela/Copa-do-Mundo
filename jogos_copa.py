@@ -67,18 +67,28 @@ def listarGrupo():
   #Manipulação de lista
   listarTimes([time for time in times if time.get('Grupo') == grupo])
 
+#Função Pesquisa por país 
+
+def pesquisarpais():
+   searchPais = input("Informe o país que deseja encontrar:  ")
+   with open('partidas_copa.json', 'a+') as partidas_file:
+    quit()
+
+#Função Apagar Arquivos Partidas
+
 def apagarArquivo():
-    os.remove('times_copa.json')
+    os.remove('partidas_copa.json')
 
 
 #Função Pesquisa por país 
 
 def pesquisarpais():
    searchPais = input("Informe o país que deseja encontrar:  ")
+   with open('partidas_copa.json', 'a+') as partidas_file:
 
 
 #MENU ->
-opcao = 0
+    opcao = 0
 while opcao != 1:
     print('--' * 20)
     print('MENU:')
@@ -119,7 +129,7 @@ while opcao != 1:
     
     #Caso o usuário digite 9, ele poderá fazer uma pesquisa por país
     elif opcao == 9:
-        break
+        pesquisarpais()
     
     #Caso o usuário digite 10, ele poderá apagar o jogo inteiro
     elif opcao == 10:
