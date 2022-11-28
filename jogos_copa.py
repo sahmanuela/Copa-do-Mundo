@@ -30,17 +30,17 @@ def sairPrograma():
     time.sleep(1)
     quit()
 
-# Função 2 - Nova Equipe 
-# Salvar os times no arquivo times_copa.
+#  Função feita para salvar os times no arquivo times_copa.
 def salvar_times_file():
     with open(times_file_name, "w") as times_file:
         json.dump(times, times_file)
 
-# Função 3 - Novo Jogo 
-# Salvar os jogos no arquivo jogos_copa.
+# Função feita para salvar os jogos no arquivo jogos_copa.
 def salvar_jogos_file():
     with open(jogos_file_name, "w") as jogos_file:
         json.dump(jogos, jogos_file)
+    
+
 
 def adicionar_grupo():
     add_grupo = False
@@ -64,7 +64,7 @@ def novo_time():
         abreviacao = input("Insira a abreviação do país: ")
         grupo = adicionar_grupo()
         times.append({"id": len(times) + 1, "Pais": pais, "Abreviacao": abreviacao, "Grupo": grupo})
-
+        count_equipes = count_equipes + 1 
         if input("Cadastrar outra seleção(S/N): ").upper() != "S":
             salvar_times = True
     salvar_times_file()
@@ -76,7 +76,7 @@ def _pesquisar_time_por_codigo(time_id):
     return [time for time in times if time.get("id") == time_id][0]
 
 
-# Função Cadastrar novo jogo (GOLS e FALTAS)
+# Função Cadastrar dados de jogo (GOLS e FALTAS)
 def novo_jogo():
     salvar_jogos = False
     # Controle para continuar a cadastrar novos times
@@ -96,6 +96,14 @@ def novo_jogo():
         if input("Cadastrar outra jogo(S/N): ").upper() != "S":
             salvar_jogos = True
     salvar_jogos_file()
+
+# Função 4 - Exibir número de jogos armazenados 
+def exibirjogos():
+    print(f"O número de jogos exitentes no banco é {count_jogos}")
+
+# Função 5 - Exibir número de equipes armazenados 
+def exibirjequipes():
+    print(f"O número de jogos exitentes no banco é {count_equipes}")
 
 
 # Função para listar os times existentes -> País - Abreviação - Grupo
