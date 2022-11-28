@@ -67,7 +67,7 @@ def listarTimes(times):
             print("Não há seleções cadastradas")
         for time in times:
             print(
-                f"Seleção: {time.get('Pais')} - {time.get('Abreviacao')} - Grupo: {time.get('Grupo')}"
+                f"Seleção: {time.get('Pais')} - {time.get('Abreviacao')} - Grupo: {time.get('Grupo')}")
 
 # Funcão 4 (EXTRA) - Para listar os times existentes separando por GRUPOS
 def listarGrupo():
@@ -135,7 +135,7 @@ def apagarArquivo():
 
 
 #RASCUNHOS
-______________________________________________________________________
+#______________________________________________________________________
 def adicionar_grupo():
     add_grupo = False
     grupo = None
@@ -185,7 +185,7 @@ def listar_jogos():
             )
   
 
-________________________________________________________________
+#________________________________________________________________
 #FINAL RASCUNHOS 
 
 
