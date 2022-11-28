@@ -77,14 +77,14 @@ def novo_jogo():
     salvar_jogos = False
     # Controle para continuar a cadastrar novos times
     while not salvar_jogos:
-        time1 = "Brasil"
+        time1 = input("Informe o primeiro time:  ")
         id_time1 = _pesquisar_time(time1).get("id") 
-        time2 = "Argentina"
+        time2 = input("Informe o segundo time:  ")
         id_time2 = _pesquisar_time(time2).get("id") 
-        gols1 = 1
-        gols2 = 2
-        faltas1 = 1
-        faltas2 = 2
+        gols1 = input("Informe o número de gols obtidos no jogo pelo time 1:  ")
+        gols2 = input("Informe o número de gols obtidos no jogo pelo time 2:  ")
+        faltas1 = input("Informe o número de faltas marcadas no jogo pelo time 1:  ")
+        faltas2 = input("Informe o número de faltas marcadas no jogo pelo time 2:  ")
         jogos.append({
             "time1": {"time": id_time1, "gols": gols1, "faltas": faltas1},
             "time2": {"time": id_time2, "gols": gols2, "faltas": faltas2},
