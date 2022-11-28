@@ -1,6 +1,7 @@
 import json
 import os
 import time
+# REPLANEJAMENTO JV 
 
 # Início do programa -> Formatação inicial
 print("--" * 20)
@@ -11,6 +12,7 @@ jogos_file_name = "jogos_copa.json"
 times = list()
 jogos = list()
 
+# Função feita para abrir/cadastrar o arquivo(banco) de times (equipes)
 def abrir_arquivo(file_name):
     if os.path.isfile(file_name):
         # Criação do arquivo times_copa.json
@@ -24,12 +26,6 @@ times = abrir_arquivo(times_file_name)
 jogos = abrir_arquivo(jogos_file_name)
 
 
-# Função 1 - Sair do programa
-def sairPrograma():
-    print("Você está saindo do programa...")
-    time.sleep(1)
-    quit()
-
 #  Função feita para salvar os times no arquivo times_copa.
 def salvar_times_file():
     with open(times_file_name, "w") as times_file:
@@ -39,23 +35,17 @@ def salvar_times_file():
 def salvar_jogos_file():
     with open(jogos_file_name, "w") as jogos_file:
         json.dump(jogos, jogos_file)
-    
 
 
-def adicionar_grupo():
-    add_grupo = False
-    grupo = None
-    # Validação -> Cada grupo pode ter apenas 4 times
-    while not add_grupo:
-        grupo = input("Insira o grupo do país: ").upper()
-        # Manipulação de lista
-        if len([time for time in times if time.get("Grupo") == grupo]) == 4:
-            print("Este grupo já possui 4 seleções!\nEscolha outro grupo.")
-        else:
-            add_grupo = True
-    return grupo
+# Funções MENU
 
-# Função 2 - para criar um time novo, uma nova equipe
+# Função 1 - Sair do programa
+def sairPrograma():
+    print("Você está saindo do programa...")
+    time.sleep(1)
+    quit()
+
+# Função 2 - Cadastrar Novo time (equipe)
 def novo_time():
     salvar_times = False
     # Controle para continuar a cadastrar novos times
@@ -64,19 +54,12 @@ def novo_time():
         abreviacao = input("Insira a abreviação do país: ")
         grupo = adicionar_grupo()
         times.append({"id": len(times) + 1, "Pais": pais, "Abreviacao": abreviacao, "Grupo": grupo})
-        count_equipes = count_equipes + 1 
+        count_equipes = count_equipes + 1 #contador para armazenar o número de times(equipes) cadastrados no "banco"
         if input("Cadastrar outra seleção(S/N): ").upper() != "S":
             salvar_times = True
     salvar_times_file()
 
-def _pesquisar_time(nome_time):
-    return [time for time in times if time.get("Pais") == nome_time][0]
-
-def _pesquisar_time_por_codigo(time_id):
-    return [time for time in times if time.get("id") == time_id][0]
-
-
-# Função Cadastrar dados de jogo (GOLS e FALTAS)
+# Função 3 - Cadastrar Novo Jogo (Dados: Id; Gols; Faltas)
 def novo_jogo():
     salvar_jogos = False
     # Controle para continuar a cadastrar novos times
@@ -93,17 +76,48 @@ def novo_jogo():
             "time1": {"time": id_time1, "gols": gols1, "faltas": faltas1},
             "time2": {"time": id_time2, "gols": gols2, "faltas": faltas2},
             })
+        count_jogos = count_jogos + 1 #contador para armazenar o número de jogos cadastrados no "banco"
         if input("Cadastrar outra jogo(S/N): ").upper() != "S":
             salvar_jogos = True
     salvar_jogos_file()
 
-# Função 4 - Exibir número de jogos armazenados 
+# Função 4 - Exibição do número de jogos cadastrados no "banco"
 def exibirjogos():
     print(f"O número de jogos exitentes no banco é {count_jogos}")
 
-# Função 5 - Exibir número de equipes armazenados 
+#Função 5 - Exibição do número de times (equipes) cadastradas no "banco"
 def exibirjequipes():
     print(f"O número de jogos exitentes no banco é {count_equipes}")
+
+
+
+def _pesquisar_time(nome_time):
+    return [time for time in times if time.get("Pais") == nome_time][0]
+
+def _pesquisar_time_por_codigo(time_id):
+    return [time for time in times if time.get("id") == time_id][0]
+
+# Função 7 - Listar jogos existentes no "banco" e suas respectivas informações
+def listar_jogos():
+    for jogo in jogos:
+        time1 = _pesquisar_time_por_codigo(jogo.get("time1").get("time"))
+        time2 = _pesquisar_time_por_codigo(jogo.get("time2").get("time"))
+        print(f'Grupo: {time1.get("Grupo")}, seleção: {time1.get("Pais")} - gols: {jogo.get("time1").get("gols")} - faltas: {jogo.get("time1").get("faltas")}\n'
+            f'Grupo: {time2.get("Grupo")}, seleção: {time2.get("Pais")} - gols: {jogo.get("time2").get("gols")} - faltas: {jogo.get("time2").get("faltas")}')
+
+
+def adicionar_grupo():
+    add_grupo = False
+    grupo = None
+    # Validação -> Cada grupo pode ter apenas 4 times
+    while not add_grupo:
+        grupo = input("Insira o grupo do país: ").upper()
+        # Manipulação de lista
+        if len([time for time in times if time.get("Grupo") == grupo]) == 4:
+            print("Este grupo já possui 4 seleções!\nEscolha outro grupo.")
+        else:
+            add_grupo = True
+    return grupo
 
 
 # Função para listar os times existentes -> País - Abreviação - Grupo
