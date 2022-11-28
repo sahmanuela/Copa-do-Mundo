@@ -1,6 +1,7 @@
 import json
 import os
 import time
+
 # REPLANEJAMENTO JV 
 
 # Início do programa -> Formatação inicial
@@ -59,7 +60,23 @@ def novo_time():
             salvar_times = True
     salvar_times_file()
 
-# Função 3 - Cadastrar Novo Jogo (Dados: Id; Gols; Faltas)
+# Função 3 (EXTRA) - Para listar os times existentes -> País - Abreviação - Grupo
+def listarTimes(times):
+    with open("times_copa.json", "r") as times_file:
+        if len(times) == 0:
+            print("Não há seleções cadastradas")
+        for time in times:
+            print(
+                f"Seleção: {time.get('Pais')} - {time.get('Abreviacao')} - Grupo: {time.get('Grupo')}"
+
+# Funcão 4 (EXTRA) - Para listar os times existentes separando por GRUPOS
+def listarGrupo():
+    grupo = input("Grupo que deseja consultar: ").upper()
+    # Manipulação de lista
+    listarTimes([time for time in times if time.get("Grupo") == grupo])
+
+
+# Função 5 - Cadastrar Novo Jogo (Dados: Id; Gols; Faltas)
 def novo_jogo():
     salvar_jogos = False
     # Controle para continuar a cadastrar novos times
@@ -81,14 +98,14 @@ def novo_jogo():
             salvar_jogos = True
     salvar_jogos_file()
 
-# Função 4 - Exibição do número de jogos cadastrados no "banco"
-def exibirjogos():
+
+# Função 6 - Exibição do número de jogos cadastrados no "banco"
+def exibir_n_jogos():
     print(f"O número de jogos exitentes no banco é {count_jogos}")
 
-#Função 5 - Exibição do número de times (equipes) cadastradas no "banco"
-def exibirjequipes():
+#Função 7 - Exibição do número de times (equipes) cadastradas no "banco"
+def exibir_n_equipes():
     print(f"O número de jogos exitentes no banco é {count_equipes}")
-
 
 
 def _pesquisar_time(nome_time):
@@ -97,7 +114,7 @@ def _pesquisar_time(nome_time):
 def _pesquisar_time_por_codigo(time_id):
     return [time for time in times if time.get("id") == time_id][0]
 
-# Função 7 - Listar jogos existentes no "banco" e suas respectivas informações
+# Função 8 - Listar jogos existentes no "banco" e suas respectivas informações
 def listar_jogos():
     for jogo in jogos:
         time1 = _pesquisar_time_por_codigo(jogo.get("time1").get("time"))
@@ -106,6 +123,19 @@ def listar_jogos():
             f'Grupo: {time2.get("Grupo")}, seleção: {time2.get("Pais")} - gols: {jogo.get("time2").get("gols")} - faltas: {jogo.get("time2").get("faltas")}')
 
 
+# Função 9 - Pesquisa por país (Exibir: Adversários, gols e faltas)
+
+
+
+#Função 10 - Apagar Jogo
+def apagarArquivo():
+    os.remove("times_copa.json")
+
+
+
+
+#RASCUNHOS
+______________________________________________________________________
 def adicionar_grupo():
     add_grupo = False
     grupo = None
@@ -137,12 +167,7 @@ def listarGrupo():
     # Manipulação de lista
     listarTimes([time for time in times if time.get("Grupo") == grupo])
 
-#Função 9 - Pesquisar Jogo por país 
-def pesquisajogo():
 
-    quit()
-    #como ler o arquivo .json?
-    #como percorrer para "pesquisar"
 
 
 
@@ -158,6 +183,11 @@ def listar_jogos():
             f'Grupo: {time1.get("Grupo")}, seleção: {time1.get("Pais")} - gols: {jogo.get("time1").get("gols")} - faltas: {jogo.get("time1").get("faltas")}\n'
             f'Grupo: {time2.get("Grupo")}, seleção: {time2.get("Pais")} - gols: {jogo.get("time2").get("gols")} - faltas: {jogo.get("time2").get("faltas")}'
             )
+  
+
+________________________________________________________________
+#FINAL RASCUNHOS 
+
 
 
 # MENU ->
@@ -194,11 +224,11 @@ while opcao != 1:
 
     # Caso o usuário digite 6, ele poderá visualizar o total de jogos cadastrados
     elif opcao == 6:
-        break
+        exibir_n_jogos()
 
     # Caso o usuário digite 7, ele poderá ver o número total de equipes cadastradas
     elif opcao == 7:
-        break
+        exibir_n_equipes()
 
     # Caso o usuário digite 8, ele poderá visualizar os jogos cadastrados com suas respectivas equipes
     elif opcao == 8:
