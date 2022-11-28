@@ -171,10 +171,6 @@ def listarGrupo():
 
 
 
-#Função 10 - Apagar Jogo
-def apagarArquivo():
-    os.remove("times_copa.json")
-
 def listar_jogos():
     for jogo in jogos:
         time1 = _pesquisar_time_por_codigo(jogo.get("time1").get("time"))
