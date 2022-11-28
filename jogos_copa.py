@@ -30,11 +30,13 @@ def sairPrograma():
     time.sleep(1)
     quit()
 
+# Função 2 - Nova Equipe 
 # Salvar os times no arquivo times_copa.
 def salvar_times_file():
     with open(times_file_name, "w") as times_file:
         json.dump(times, times_file)
 
+# Função 3 - Novo Jogo 
 # Salvar os jogos no arquivo jogos_copa.
 def salvar_jogos_file():
     with open(jogos_file_name, "w") as jogos_file:
@@ -73,6 +75,8 @@ def _pesquisar_time(nome_time):
 def _pesquisar_time_por_codigo(time_id):
     return [time for time in times if time.get("id") == time_id][0]
 
+
+# Função Cadastrar novo jogo (GOLS e FALTAS)
 def novo_jogo():
     salvar_jogos = False
     # Controle para continuar a cadastrar novos times
