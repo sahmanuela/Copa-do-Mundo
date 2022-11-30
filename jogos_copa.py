@@ -138,16 +138,17 @@ def novo_jogo():
 
 
 # Função 6 - Exibição do número de jogos cadastrados no "banco"
-# def exibir_n_jogos():
-#     print(f"O número de jogos exitentes no banco é {count_jogos}")
+def exibir_n_jogos():
+    print(f"O número de jogos exitentes no banco é {count_jogos}")
+
 
 # Função 7 - Exibição do número de times (equipes) cadastradas no "banco"
-# def exibir_n_equipes():
-#     print(f"O número de jogos exitentes no banco é {count_equipes}")
+def exibir_n_equipes():
+    print(f"O número de jogos exitentes no banco é {count_equipes}")
 
 
-# def _pesquisar_time(nome_time):
-#  return [time for time in times if time.get("Pais") == nome_time][0]
+def _pesquisar_time(nome_time):
+    return [time for time in times if time.get("Pais") == nome_time][0]
 
 
 # Função 8 - Listar jogos existentes no "banco" e suas respectivas informações
@@ -218,12 +219,12 @@ while opcao != 1:
         novo_jogo()
 
     # Caso o usuário digite 6, ele poderá visualizar o total de jogos cadastrados
-    # elif opcao == 6:
-    #     exibir_n_jogos()
+    elif opcao == 6:
+        exibir_n_jogos()
 
     # Caso o usuário digite 7, ele poderá ver o número total de equipes cadastradas
-    # elif opcao == 7:
-    #     exibir_n_equipes()
+    elif opcao == 7:
+        exibir_n_equipes()
 
     # Caso o usuário digite 8, ele poderá visualizar os jogos cadastrados com suas respectivas equipes
     elif opcao == 8:
