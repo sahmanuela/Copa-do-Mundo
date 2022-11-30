@@ -2,7 +2,7 @@ import json
 import os
 import time
 
-# REPLANEJAMENTO JV 
+# REPLANEJAMENTO JV
 
 # Início do programa -> Formatação inicial
 print("--" * 20)
@@ -25,15 +25,16 @@ def abrir_arquivo(file_name):
                 return json.load(file)
     return list()
 
+
 times = abrir_arquivo(times_file_name)
 jogos = abrir_arquivo(jogos_file_name)
-
 
 
 #  Função feita para salvar os times no arquivo times_copa.
 def salvar_times_file():
     with open(times_file_name, "w") as times_file:
         json.dump(times, times_file)
+
 
 # Função feita para salvar os jogos no arquivo jogos_copa.
 def salvar_jogos_file():
@@ -50,19 +51,27 @@ def sair_programa():
     quit()
 
 
-
 # Função 2 - Cadastrar Novo time (equipe)
 def novo_time():
+    count_equipes = 0
     salvar_times = False
     # Controle para continuar a cadastrar novos times
     while not salvar_times:
         pais = input("Insira o país da seleção: ")
         abreviacao = input("Insira a abreviação do país: ")
         grupo = adicionar_grupo()
-        times.append({"id": len(times) + 1, "Pais": pais, "Abreviacao": abreviacao, "Grupo": grupo})
+        times.append(
+            {
+                "id": len(times) + 1,
+                "Pais": pais,
+                "Abreviacao": abreviacao,
+                "Grupo": grupo,
+            }
+        )
         if input("Cadastrar outra seleção(S/N): ").upper() != "S":
             salvar_times = True
     salvar_times_file()
+
 
 # Complemento função 2 - Adicionar Grupo
 def adicionar_grupo():
@@ -86,8 +95,9 @@ def listar_times(times):
             print("Não há seleções cadastradas")
         for time in times:
             print(
-                f"Seleção: {time.get('Pais')} - {time.get('Abreviacao')} - Grupo: {time.get('Grupo')}")
-        
+                f"Seleção: {time.get('Pais')} - {time.get('Abreviacao')} - Grupo: {time.get('Grupo')}"
+            )
+
 
 # Funcão 4 (EXTRA) - Para listar os times existentes separando por GRUPOS
 def listar_grupo():
@@ -95,52 +105,51 @@ def listar_grupo():
     # Manipulação de lista
     listar_times([time for time in times if time.get("Grupo") == grupo])
 
+
 def _pesquisar_time(nome_time):
-    return [time for time in times if time.get("Pais").lower() == nome_time.lower()][0]
-    
+    return [time for time in times if time.get("Pais") == nome_time][0]
+
+
 def _pesquisar_time_por_codigo(time_id):
     return [time for time in times if time.get("id") == time_id][0]
+
 
 # Função 5 - Cadastrar Novo Jogo (Dados: Id; Gols; Faltas)
 def novo_jogo():
     salvar_jogos = False
     # Controle para continuar a cadastrar novos times
-    if times == []:
-        print("Não existem times registrados no banco. Registre-os antes de criar novos jogos.")
-    else:
-        while not salvar_jogos:
-            time1 = input("Informe o primeiro time:  ")
-            id_time1 = _pesquisar_time(time1).get("id") 
-            print(id_time1)
-            '''print( _pesquisar_time(time1))
-            print(_pesquisar_time_por_codigo(1))'''
-            time2 = input("Informe o segundo time:  ")
-            id_time2 = _pesquisar_time(time2).get("id") 
-            print(id_time2)
-            gols1 = input("Informe o número de gols obtidos no jogo pelo time 1:  ")
-            gols2 = input("Informe o número de gols obtidos no jogo pelo time 2:  ")
-            faltas1 = input("Informe o número de faltas marcadas no jogo pelo time 1:  ")
-            faltas2 = input("Informe o número de faltas marcadas no jogo pelo time 2:  ")
-            jogos.append({
+    while not salvar_jogos:
+        time1 = input("Informe o primeiro time:  ")
+        id_time1 = _pesquisar_time(time1).get("id")
+        time2 = input("Informe o segundo time:  ")
+        id_time2 = _pesquisar_time(time2).get("id")
+        print(id_time2)
+        gols1 = input("Informe o número de gols obtidos no jogo pelo time 1:  ")
+        gols2 = input("Informe o número de gols obtidos no jogo pelo time 2:  ")
+        faltas1 = input("Informe o número de faltas marcadas no jogo pelo time 1:  ")
+        faltas2 = input("Informe o número de faltas marcadas no jogo pelo time 2:  ")
+        jogos.append(
+            {
                 "time1": {"time": id_time1, "gols": gols1, "faltas": faltas1},
                 "time2": {"time": id_time2, "gols": gols2, "faltas": faltas2},
-                })
-            if input("Cadastrar outra jogo(S/N): ").upper() != "S":
-                salvar_jogos = True
-        salvar_jogos_file()
+            }
+        )
+        if input("Cadastrar outra jogo(S/N): ").upper() != "S":
+            salvar_jogos = True
+    salvar_jogos_file()
 
 
 # Função 6 - Exibição do número de jogos cadastrados no "banco"
 # def exibir_n_jogos():
 #     print(f"O número de jogos exitentes no banco é {count_jogos}")
 
-#Função 7 - Exibição do número de times (equipes) cadastradas no "banco"
+# Função 7 - Exibição do número de times (equipes) cadastradas no "banco"
 # def exibir_n_equipes():
 #     print(f"O número de jogos exitentes no banco é {count_equipes}")
 
 
-#def _pesquisar_time(nome_time):
-  #  return [time for time in times if time.get("Pais") == nome_time][0]
+# def _pesquisar_time(nome_time):
+#  return [time for time in times if time.get("Pais") == nome_time][0]
 
 
 # Função 8 - Listar jogos existentes no "banco" e suas respectivas informações
@@ -148,47 +157,38 @@ def listar_jogos():
     for jogo in jogos:
         time1 = _pesquisar_time_por_codigo(jogo.get("time1").get("time"))
         time2 = _pesquisar_time_por_codigo(jogo.get("time2").get("time"))
-        print(f'Grupo: {time1.get("Grupo")}, seleção: {time1.get("Pais")} - gols: {jogo.get("time1").get("gols")} - faltas: {jogo.get("time1").get("faltas")}\n'
-            f'Grupo: {time2.get("Grupo")}, seleção: {time2.get("Pais")} - gols: {jogo.get("time2").get("gols")} - faltas: {jogo.get("time2").get("faltas")}')
+        print(
+            f'Grupo: {time1.get("Grupo")}, seleção: {time1.get("Pais")} - gols: {jogo.get("time1").get("gols")} - faltas: {jogo.get("time1").get("faltas")}\n'
+            f'Grupo: {time2.get("Grupo")}, seleção: {time2.get("Pais")} - gols: {jogo.get("time2").get("gols")} - faltas: {jogo.get("time2").get("faltas")}'
+        )
 
-def listar_individual():
-    for pais in jogos:
-        if pais == 'time1':
-            print(f'Adversário: {jogos.get("time2")} - Gols: {jogos.get("time1").get("gols")} - Faltas: {time.get("time1").get("faltas")}')
-        elif pais == 'time2':
-            print(f'Adversário: {jogos.get("time1")} - Gols: {jogos.get("time2").get("gols")} - Faltas: {time.get("time2").get("faltas")}')
 
-        
 # Função 9 - Pesquisa por país (Exibir: Adversários, gols e faltas)
 def listar_pais():
-    pais = input("Pais que deseja consultar: ").lower()
+    pais = input("Pais que deseja consultar: ").upper()
     # Manipulação de lista
-    listar_individual(pais)
+    listar_times([time for time in times if time.get("Pais") == pais])
 
 
-#Função 10 - Apagar Jogo
+# Função 10 - Apagar Jogo
 def apagar_arquivo():
     os.remove("times_copa.json")
 
+    # RASCUNHOS
+    # ______________________________________________________________________
 
-
-
-#RASCUNHOS
-#______________________________________________________________________
-
-
-'''def listar_jogos():
+    # def listar_jogos():
     for jogo in jogos:
         time1 = _pesquisar_time_por_codigo(jogo.get("time1").get("time"))
         time2 = _pesquisar_time_por_codigo(jogo.get("time2").get("time"))
         print(
             f'Grupo: {time1.get("Grupo")}, seleção: {time1.get("Pais")} - gols: {jogo.get("time1").get("gols")} - faltas: {jogo.get("time1").get("faltas")}\n'
             f'Grupo: {time2.get("Grupo")}, seleção: {time2.get("Pais")} - gols: {jogo.get("time2").get("gols")} - faltas: {jogo.get("time2").get("faltas")}'
-            )
-  
+        )
 
-#________________________________________________________________
-#FINAL RASCUNHOS '''
+
+# ________________________________________________________________
+# FINAL RASCUNHOS
 
 
 # MENU ->
