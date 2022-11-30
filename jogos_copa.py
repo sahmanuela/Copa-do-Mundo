@@ -41,13 +41,14 @@ def salvar_jogos_file():
 # Funções MENU
 
 # Função 1 - Sair do programa
-def sairPrograma():
+def sair_programa():
     print("Você está saindo do programa...")
     time.sleep(1)
     quit()
 
 # Função 2 - Cadastrar Novo time (equipe)
 def novo_time():
+    count_equipes = 0
     salvar_times = False
     # Controle para continuar a cadastrar novos times
     while not salvar_times:
@@ -60,8 +61,22 @@ def novo_time():
             salvar_times = True
     salvar_times_file()
 
+# Complemento função 2 - Adicionar Grupo
+def adicionar_grupo():
+    add_grupo = False
+    grupo = None
+    # Validação -> Cada grupo pode ter apenas 4 times
+    while not add_grupo:
+        grupo = input("Insira o grupo do país: ").upper()
+        # Manipulação de lista
+        if len([time for time in times if time.get("Grupo") == grupo]) == 4:
+            print("Este grupo já possui 4 seleções!\nEscolha outro grupo.")
+        else:
+            add_grupo = True
+    return grupo
+
 # Função 3 (EXTRA) - Para listar os times existentes -> País - Abreviação - Grupo
-def listarTimes(times):
+def listar_times(times):
     with open("times_copa.json", "r") as times_file:
         if len(times) == 0:
             print("Não há seleções cadastradas")
@@ -70,11 +85,10 @@ def listarTimes(times):
                 f"Seleção: {time.get('Pais')} - {time.get('Abreviacao')} - Grupo: {time.get('Grupo')}")
 
 # Funcão 4 (EXTRA) - Para listar os times existentes separando por GRUPOS
-def listarGrupo():
+def listar_grupo():
     grupo = input("Grupo que deseja consultar: ").upper()
     # Manipulação de lista
-    listarTimes([time for time in times if time.get("Grupo") == grupo])
-
+    listar_times([time for time in times if time.get("Grupo") == grupo])
 
 # Função 5 - Cadastrar Novo Jogo (Dados: Id; Gols; Faltas)
 def novo_jogo():
@@ -83,6 +97,7 @@ def novo_jogo():
     while not salvar_jogos:
         time1 = input("Informe o primeiro time:  ")
         id_time1 = _pesquisar_time(time1).get("id") 
+        print(id_time1)
         time2 = input("Informe o segundo time:  ")
         id_time2 = _pesquisar_time(time2).get("id") 
         gols1 = input("Informe o número de gols obtidos no jogo pelo time 1:  ")
@@ -100,12 +115,12 @@ def novo_jogo():
 
 
 # Função 6 - Exibição do número de jogos cadastrados no "banco"
-def exibir_n_jogos():
-    print(f"O número de jogos exitentes no banco é {count_jogos}")
+# def exibir_n_jogos():
+#     print(f"O número de jogos exitentes no banco é {count_jogos}")
 
 #Função 7 - Exibição do número de times (equipes) cadastradas no "banco"
-def exibir_n_equipes():
-    print(f"O número de jogos exitentes no banco é {count_equipes}")
+# def exibir_n_equipes():
+#     print(f"O número de jogos exitentes no banco é {count_equipes}")
 
 
 def _pesquisar_time(nome_time):
@@ -128,7 +143,7 @@ def listar_jogos():
 
 
 #Função 10 - Apagar Jogo
-def apagarArquivo():
+def apagar_arquivo():
     os.remove("times_copa.json")
 
 
@@ -136,42 +151,9 @@ def apagarArquivo():
 
 #RASCUNHOS
 #______________________________________________________________________
-def adicionar_grupo():
-    add_grupo = False
-    grupo = None
-    # Validação -> Cada grupo pode ter apenas 4 times
-    while not add_grupo:
-        grupo = input("Insira o grupo do país: ").upper()
-        # Manipulação de lista
-        if len([time for time in times if time.get("Grupo") == grupo]) == 4:
-            print("Este grupo já possui 4 seleções!\nEscolha outro grupo.")
-        else:
-            add_grupo = True
-    return grupo
 
 
-# Função para listar os times existentes -> País - Abreviação - Grupo
-def listarTimes(times):
-    with open("times_copa.json", "r") as times_file:
-        if len(times) == 0:
-            print("Não há seleções cadastradas")
-        for time in times:
-            print(
-                f"Seleção: {time.get('Pais')} - {time.get('Abreviacao')} - Grupo: {time.get('Grupo')}"
-            )
-
-
-# Função 8 - para listar os times existentes separando por GRUPOS
-def listarGrupo():
-    grupo = input("Grupo que deseja consultar: ").upper()
-    # Manipulação de lista
-    listarTimes([time for time in times if time.get("Grupo") == grupo])
-
-
-
-
-
-def listar_jogos():
+# def listar_jogos():
     for jogo in jogos:
         time1 = _pesquisar_time_por_codigo(jogo.get("time1").get("time"))
         time2 = _pesquisar_time_por_codigo(jogo.get("time2").get("time"))
@@ -183,7 +165,6 @@ def listar_jogos():
 
 #________________________________________________________________
 #FINAL RASCUNHOS 
-
 
 
 # MENU ->
@@ -200,7 +181,7 @@ while opcao != 1:
 
     # Caso o usuário digite 1, ele irá sair do programa
     if opcao == 1:
-        sairPrograma()
+        sair_programa()
 
     # Caso o usuário digite 2, ele poderá criar um ou mais times/equipes
     elif opcao == 2:
@@ -208,23 +189,23 @@ while opcao != 1:
 
     # Caso o usuário digite 3, ele irá visualizar os times/equipes cadastrados
     elif opcao == 3:
-        listarTimes(times)
+        listar_times(times)
 
     # Caso o usuário digite 4, ele poderá escolher um grupo para visualizar os times/equipes contidos no mesmo
     elif opcao == 4:
-        listarGrupo()
+        listar_grupo()
 
     # Caso o usuário digite 5, ele poderá criar um ou mais jogos
     elif opcao == 5:
         novo_jogo()
 
     # Caso o usuário digite 6, ele poderá visualizar o total de jogos cadastrados
-    elif opcao == 6:
-        exibir_n_jogos()
+    # elif opcao == 6:
+    #     exibir_n_jogos()
 
     # Caso o usuário digite 7, ele poderá ver o número total de equipes cadastradas
-    elif opcao == 7:
-        exibir_n_equipes()
+    # elif opcao == 7:
+    #     exibir_n_equipes()
 
     # Caso o usuário digite 8, ele poderá visualizar os jogos cadastrados com suas respectivas equipes
     elif opcao == 8:
@@ -237,7 +218,7 @@ while opcao != 1:
     # Caso o usuário digite 10, ele poderá apagar o jogo inteiro
     elif opcao == 10:
         print("Você está deletando o jogo...")
-        apagarArquivo()
+        apagar_arquivo()
         print("Arquivo deletado!")
         print("Você está saindo do programa...")
         quit()
