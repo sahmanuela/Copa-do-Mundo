@@ -139,12 +139,14 @@ def novo_jogo():
 
 # Função 6 - Exibição do número de jogos cadastrados no "banco"
 def exibir_n_jogos():
-    print(f"O número de jogos exitentes no banco é {count_jogos}")
+    qtd_jogos = len(jogos)
+    print(f"O número de jogos exitentes no banco é {qtd_jogos}")
 
 
 # Função 7 - Exibição do número de times (equipes) cadastradas no "banco"
 def exibir_n_equipes():
-    print(f"O número de jogos exitentes no banco é {count_equipes}")
+    qtd_times = len(times)
+    print(f"O número de times exitentes no banco é {qtd_times}")
 
 
 def _pesquisar_time(nome_time):
