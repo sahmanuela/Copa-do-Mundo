@@ -163,6 +163,18 @@ def listar_jogos():
         )
 
 
+def listar_individual():
+    for pais in jogos:
+        if pais == "time1":
+            print(
+                f'Adversário: {jogos.get("time2")} - Gols: {jogos.get("time1").get("gols")} - Faltas: {time.get("time1").get("faltas")}'
+            )
+        elif pais == "time2":
+            print(
+                f'Adversário: {jogos.get("time1")} - Gols: {jogos.get("time2").get("gols")} - Faltas: {time.get("time2").get("faltas")}'
+            )
+
+
 # Função 9 - Pesquisa por país (Exibir: Adversários, gols e faltas)
 def listar_pais():
     pais = input("Pais que deseja consultar: ").upper()
