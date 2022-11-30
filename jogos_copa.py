@@ -8,6 +8,7 @@ import time
 print("--" * 20)
 print("{:^40}".format("COPA DO MUNDO"))
 
+
 times_file_name = "times_copa.json"
 jogos_file_name = "jogos_copa.json"
 times = list()
@@ -22,9 +23,11 @@ def abrir_arquivo(file_name):
                 # seek -> mover o cursor para o início do arquivo para poder carregar tudo ou salvar tudo a partir do inicio.
                 file.seek(0)
                 return json.load(file)
+    return list()
 
 times = abrir_arquivo(times_file_name)
 jogos = abrir_arquivo(jogos_file_name)
+
 
 
 #  Função feita para salvar os times no arquivo times_copa.
@@ -46,6 +49,8 @@ def sair_programa():
     time.sleep(1)
     quit()
 
+
+
 # Função 2 - Cadastrar Novo time (equipe)
 def novo_time():
     count_equipes = 0
@@ -56,7 +61,6 @@ def novo_time():
         abreviacao = input("Insira a abreviação do país: ")
         grupo = adicionar_grupo()
         times.append({"id": len(times) + 1, "Pais": pais, "Abreviacao": abreviacao, "Grupo": grupo})
-        count_equipes = count_equipes + 1 #contador para armazenar o número de times(equipes) cadastrados no "banco"
         if input("Cadastrar outra seleção(S/N): ").upper() != "S":
             salvar_times = True
     salvar_times_file()
@@ -75,6 +79,7 @@ def adicionar_grupo():
             add_grupo = True
     return grupo
 
+
 # Função 3 (EXTRA) - Para listar os times existentes -> País - Abreviação - Grupo
 def listar_times(times):
     with open("times_copa.json", "r") as times_file:
@@ -90,8 +95,15 @@ def listar_grupo():
     # Manipulação de lista
     listar_times([time for time in times if time.get("Grupo") == grupo])
 
+def _pesquisar_time(nome_time):
+    return [time for time in times if time.get("Pais") == nome_time][0]
+
+def _pesquisar_time_por_codigo(time_id):
+    return [time for time in times if time.get("id") == time_id][0]
+
 # Função 5 - Cadastrar Novo Jogo (Dados: Id; Gols; Faltas)
 def novo_jogo():
+    print(jogos)
     salvar_jogos = False
     # Controle para continuar a cadastrar novos times
     while not salvar_jogos:
@@ -100,6 +112,7 @@ def novo_jogo():
         print(id_time1)
         time2 = input("Informe o segundo time:  ")
         id_time2 = _pesquisar_time(time2).get("id") 
+        print(id_time2)
         gols1 = input("Informe o número de gols obtidos no jogo pelo time 1:  ")
         gols2 = input("Informe o número de gols obtidos no jogo pelo time 2:  ")
         faltas1 = input("Informe o número de faltas marcadas no jogo pelo time 1:  ")
@@ -108,7 +121,6 @@ def novo_jogo():
             "time1": {"time": id_time1, "gols": gols1, "faltas": faltas1},
             "time2": {"time": id_time2, "gols": gols2, "faltas": faltas2},
             })
-        count_jogos = count_jogos + 1 #contador para armazenar o número de jogos cadastrados no "banco"
         if input("Cadastrar outra jogo(S/N): ").upper() != "S":
             salvar_jogos = True
     salvar_jogos_file()
@@ -123,11 +135,9 @@ def novo_jogo():
 #     print(f"O número de jogos exitentes no banco é {count_equipes}")
 
 
-def _pesquisar_time(nome_time):
-    return [time for time in times if time.get("Pais") == nome_time][0]
+#def _pesquisar_time(nome_time):
+  #  return [time for time in times if time.get("Pais") == nome_time][0]
 
-def _pesquisar_time_por_codigo(time_id):
-    return [time for time in times if time.get("id") == time_id][0]
 
 # Função 8 - Listar jogos existentes no "banco" e suas respectivas informações
 def listar_jogos():
