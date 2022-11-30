@@ -53,7 +53,6 @@ def sair_programa():
 
 # Função 2 - Cadastrar Novo time (equipe)
 def novo_time():
-    count_equipes = 0
     salvar_times = False
     # Controle para continuar a cadastrar novos times
     while not salvar_times:
@@ -96,14 +95,13 @@ def listar_grupo():
     listar_times([time for time in times if time.get("Grupo") == grupo])
 
 def _pesquisar_time(nome_time):
-    return [time for time in times if time.get("Pais") == nome_time][0]
-
+    return [time for time in times if time.get("Pais").lower() == nome_time.lower()][0]
+    
 def _pesquisar_time_por_codigo(time_id):
     return [time for time in times if time.get("id") == time_id][0]
 
 # Função 5 - Cadastrar Novo Jogo (Dados: Id; Gols; Faltas)
 def novo_jogo():
-    print(jogos)
     salvar_jogos = False
     # Controle para continuar a cadastrar novos times
     while not salvar_jogos:
