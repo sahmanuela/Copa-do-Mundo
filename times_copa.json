@@ -1,6 +1,1 @@
-[
-  { "Pais": "Brasil", "Abreviacao": "BRA", "Grupo": "B" },
-  { "Pais": "Alemanha", "Abreviacao": "ALE", "Grupo": "B" },
-  { "id": 3, "Pais": "Inglaterra", "Abreviacao": "ING", "Grupo": "A" },
-  { "id": 4, "Pais": "Pais de Gales", "Abreviacao": "GAL", "Grupo": "A" }
-]
+[{"id": 1, "Pais": "Brasil", "Abreviacao": "BRA", "Grupo": "G"}, {"id": 2, "Pais": "Argentina", "Abreviacao": "ARG", "Grupo": "A"}, {"id": 3, "Pais": "Suica ", "Abreviacao": "SUI", "Grupo": "B"}, {"id": 4, "Pais": "Catar", "Abreviacao": "CAT", "Grupo": "A"}]
