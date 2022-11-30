@@ -51,7 +51,6 @@ def sair_programa():
 
 # Função 2 - Cadastrar Novo time (equipe)
 def novo_time():
-    count_equipes = 0
     salvar_times = False
     # Controle para continuar a cadastrar novos times
     while not salvar_times:
@@ -164,27 +163,37 @@ def listar_jogos():
         )
 
 
-def listar_individual():
-    for pais in jogos:
-        if pais == "time1":
+def listar_individual(jogos):
+    for time in jogos:
+        time1 = _pesquisar_time_por_codigo(jogos.get("time1").get("time"))
+        time2 = _pesquisar_time_por_codigo(jogos.get("time2").get("time"))
+        if time == time1:
             print(
                 f'Adversário: {jogos.get("time2")} - Gols: {jogos.get("time1").get("gols")} - Faltas: {time.get("time1").get("faltas")}'
             )
-        elif pais == "time2":
+        elif time == time2:
             print(
                 f'Adversário: {jogos.get("time1")} - Gols: {jogos.get("time2").get("gols")} - Faltas: {time.get("time2").get("faltas")}'
             )
 
 
 # Função 9 - Pesquisa por país (Exibir: Adversários, gols e faltas)
-def listar_pais():
-    pais = input("Pais que deseja consultar: ").upper()
+def pesquisa_por_pais():
+    pais = ("Informe o país que deseja consultar:  ").lower()
     # Manipulação de lista
-    listar_times([time for time in times if time.get("Pais") == pais])
+    listar_individual(pais)
 
 
-# Função 10 - Apagar Jogo
+def apagar_jogo():
+    pais_dois = ("Informe o segundo país participante do jogo que seja apagar:  ")
+    for jogo in jogos:
+        time1 = _pesquisar_time_por_codigo(jogo.get("time1").get("time"))
+        time2 = _pesquisar_time_por_codigo(jogo.get("time2").get("time"))
+
+# Função 10 - Apagar Jogo (O usuário deve informar um jogo que deseja apagar, e somente o jogo deve ser excluído do arquivo de jogos)
 def apagar_arquivo():
+    pais_um = ("Informe o primeiro país participante do jogo que seja apagar:  ")
+    apagar_jogo(pais_um)
     os.remove("times_copa.json")
 
 
@@ -234,7 +243,7 @@ while opcao != 1:
 
     # Caso o usuário digite 9, ele poderá fazer uma pesquisa por país
     elif opcao == 9:
-        listar_pais()
+        pesquisa_por_pais()
 
     # Caso o usuário digite 10, ele poderá apagar o jogo inteiro
     elif opcao == 10:
