@@ -2,8 +2,6 @@ import json
 import os
 import time
 
-# REPLANEJAMENTO JV
-
 # Início do programa -> Formatação inicial
 print("--" * 20)
 print("{:^40}".format("COPA DO MUNDO"))
