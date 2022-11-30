@@ -1,6 +1,0 @@
-[
-  { "Pais": "Brasil", "Abreviacao": "BRA", "Grupo": "B" },
-  { "Pais": "Alemanha", "Abreviacao": "ALE", "Grupo": "B" },
-  { "id": 3, "Pais": "Inglaterra", "Abreviacao": "ING", "Grupo": "A" },
-  { "id": 4, "Pais": "Pais de Gales", "Abreviacao": "GAL", "Grupo": "A" }
-]

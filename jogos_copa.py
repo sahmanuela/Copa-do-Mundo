@@ -98,6 +98,8 @@ def novo_jogo():
         time1 = input("Informe o primeiro time:  ")
         id_time1 = _pesquisar_time(time1).get("id") 
         print(id_time1)
+        print( _pesquisar_time(time1))
+        print(_pesquisar_time_por_codigo(1))
         time2 = input("Informe o segundo time:  ")
         id_time2 = _pesquisar_time(time2).get("id") 
         gols1 = input("Informe o número de gols obtidos no jogo pelo time 1:  ")
@@ -139,7 +141,10 @@ def listar_jogos():
 
 
 # Função 9 - Pesquisa por país (Exibir: Adversários, gols e faltas)
-
+def listar_pais():
+    pais = input("Pais que deseja consultar: ").upper()
+    # Manipulação de lista
+    listar_times([time for time in times if time.get("Pais") == pais])
 
 
 #Função 10 - Apagar Jogo
@@ -213,7 +218,7 @@ while opcao != 1:
 
     # Caso o usuário digite 9, ele poderá fazer uma pesquisa por país
     elif opcao == 9:
-        break
+        listar_pais()
 
     # Caso o usuário digite 10, ele poderá apagar o jogo inteiro
     elif opcao == 10:
