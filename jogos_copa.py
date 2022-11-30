@@ -186,22 +186,6 @@ def listar_pais():
 def apagar_arquivo():
     os.remove("times_copa.json")
 
-    # RASCUNHOS
-    # ______________________________________________________________________
-
-    # def listar_jogos():
-    for jogo in jogos:
-        time1 = _pesquisar_time_por_codigo(jogo.get("time1").get("time"))
-        time2 = _pesquisar_time_por_codigo(jogo.get("time2").get("time"))
-        print(
-            f'Grupo: {time1.get("Grupo")}, seleção: {time1.get("Pais")} - gols: {jogo.get("time1").get("gols")} - faltas: {jogo.get("time1").get("faltas")}\n'
-            f'Grupo: {time2.get("Grupo")}, seleção: {time2.get("Pais")} - gols: {jogo.get("time2").get("gols")} - faltas: {jogo.get("time2").get("faltas")}'
-        )
-
-
-# ________________________________________________________________
-# FINAL RASCUNHOS
-
 
 # MENU ->
 opcao = 0
