@@ -6,15 +6,12 @@ import time
 print("--" * 20)
 print("{:^40}".format("COPA DO MUNDO"))
 
-
 times_file_name = "times_copa.json"
 jogos_file_name = "jogos_copa.json"
-times = list()
-jogos = list()
 
 # Função feita para abrir/cadastrar o arquivo(banco) de times (equipes)
 def abrir_arquivo(file_name):
-    if os.path.isfile(file_name):
+    if os.path.exists(file_name):
         # Criação do arquivo times_copa.json
         with open(file_name, "r") as file:
             if len(file.readline()) > 0:
@@ -87,27 +84,26 @@ def adicionar_grupo():
 
 # Função 3 (EXTRA) - Para listar os times existentes -> País - Abreviação - Grupo
 def listar_times(times):
-    with open("times_copa.json", "r") as times_file:
-        if len(times) == 0:
-            print("Não há seleções cadastradas")
-        for time in times:
-            print(
-                f"Seleção: {time.get('Pais')} - {time.get('Abreviacao')} - Grupo: {time.get('Grupo')}"
-            )
+    if len(times) == 0:
+        print("Não há seleções cadastradas")
+    for time in times:
+        print(
+            f"Código: {time.get('id')} - Seleção: {time.get('Pais')} - {time.get('Abreviacao')} - Grupo: {time.get('Grupo')}"
+        )
 
 
 # Funcão 4 (EXTRA) - Para listar os times existentes separando por GRUPOS
 def listar_grupo():
     grupo = input("Grupo que deseja consultar: ").upper()
     # Manipulação de lista
-    listar_times([time for time in times if time.get("Grupo") == grupo])
+    listar_times([time for time in times if time.get("Grupo").lower() == grupo.lower()])
 
 
-def _pesquisar_time(nome_time):
-    return [time for time in times if time.get("Pais") == nome_time][0]
+def pesquisar_time(nome_time):
+    return [time for time in times if time.get("Pais").lower() == nome_time.lower()][0]
 
 
-def _pesquisar_time_por_codigo(time_id):
+def pesquisar_time_por_codigo(time_id):
     return [time for time in times if time.get("id") == time_id][0]
 
 
@@ -117,18 +113,18 @@ def novo_jogo():
     # Controle para continuar a cadastrar novos times
     while not salvar_jogos:
         time1 = input("Informe o primeiro time:  ")
-        id_time1 = _pesquisar_time(time1).get("id")
+        id_time1 = pesquisar_time(time1).get("id")
         time2 = input("Informe o segundo time:  ")
-        id_time2 = _pesquisar_time(time2).get("id")
-        print(id_time2)
+        id_time2 = pesquisar_time(time2).get("id")
         gols1 = input("Informe o número de gols obtidos no jogo pelo time 1:  ")
         gols2 = input("Informe o número de gols obtidos no jogo pelo time 2:  ")
         faltas1 = input("Informe o número de faltas marcadas no jogo pelo time 1:  ")
         faltas2 = input("Informe o número de faltas marcadas no jogo pelo time 2:  ")
         jogos.append(
             {
-                "time1": {"time": id_time1, "gols": gols1, "faltas": faltas1},
-                "time2": {"time": id_time2, "gols": gols2, "faltas": faltas2},
+                "id": len(jogos) + 1,
+                "time1": {"time": id_time1, "gols": int(gols1), "faltas": int(faltas1)},
+                "time2": {"time": id_time2, "gols": int(gols2), "faltas": int(faltas2)},
             }
         )
         if input("Cadastrar outra jogo(S/N): ").upper() != "S":
@@ -139,62 +135,72 @@ def novo_jogo():
 # Função 6 - Exibição do número de jogos cadastrados no "banco"
 def exibir_n_jogos():
     qtd_jogos = len(jogos)
-    print(f"O número de jogos exitentes no banco é {qtd_jogos}")
+    print(f"O número de jogos existentes no banco é {qtd_jogos}")
 
 
 # Função 7 - Exibição do número de times (equipes) cadastradas no "banco"
 def exibir_n_equipes():
     qtd_times = len(times)
-    print(f"O número de times exitentes no banco é {qtd_times}")
+    print(f"O número de times existentes no banco é {qtd_times}")
 
 
-def _pesquisar_time(nome_time):
+def pesquisar_time(nome_time):
     return [time for time in times if time.get("Pais") == nome_time][0]
 
 
 # Função 8 - Listar jogos existentes no "banco" e suas respectivas informações
-def listar_jogos():
-    for jogo in jogos:
-        time1 = _pesquisar_time_por_codigo(jogo.get("time1").get("time"))
-        time2 = _pesquisar_time_por_codigo(jogo.get("time2").get("time"))
+def listar_jogos(lista_jogos=None):
+    lista_jogos = lista_jogos if lista_jogos else jogos
+    for jogo in lista_jogos:
+        time1 = pesquisar_time_por_codigo(jogo.get("time1").get("time"))
+        time2 = pesquisar_time_por_codigo(jogo.get("time2").get("time"))
+        if jogo.get("time1").get("gols") == jogo.get("time2").get("gols"):
+            resultado = "Empate"
+        else:
+            resultado = f'{time1.get("Pais") if jogo.get("time1").get("gols") > jogo.get("time2").get("gols") else time2.get("Pais")}'
         print(
-            f'Grupo: {time1.get("Grupo")}, seleção: {time1.get("Pais")} - gols: {jogo.get("time1").get("gols")} - faltas: {jogo.get("time1").get("faltas")}\n'
-            f'Grupo: {time2.get("Grupo")}, seleção: {time2.get("Pais")} - gols: {jogo.get("time2").get("gols")} - faltas: {jogo.get("time2").get("faltas")}'
+            "--------------\n"
+            f'Jogo {jogo.get("id")}: {time1.get("Pais")} X {time2.get("Pais")}\n'
+            f' - {time1.get("Pais")} - gols: {jogo.get("time1").get("gols")} - faltas: {jogo.get("time1").get("faltas")}\n'
+            f' - {time2.get("Pais")} - gols: {jogo.get("time2").get("gols")} - faltas: {jogo.get("time2").get("faltas")}\n'
+            f"Vencedor: {resultado}\n"
+            "--------------\n"
         )
 
 
-def listar_individual(jogos):
-    for time in jogos:
-        time1 = _pesquisar_time_por_codigo(jogos.get("time1").get("time"))
-        time2 = _pesquisar_time_por_codigo(jogos.get("time2").get("time"))
-        if time == time1:
+def listar_individual():
+    for pais in jogos:
+        if pais == "time1":
             print(
                 f'Adversário: {jogos.get("time2")} - Gols: {jogos.get("time1").get("gols")} - Faltas: {time.get("time1").get("faltas")}'
             )
-        elif time == time2:
+        elif pais == "time2":
             print(
                 f'Adversário: {jogos.get("time1")} - Gols: {jogos.get("time2").get("gols")} - Faltas: {time.get("time2").get("faltas")}'
             )
 
 
 # Função 9 - Pesquisa por país (Exibir: Adversários, gols e faltas)
-def pesquisa_por_pais():
-    pais = ("Informe o país que deseja consultar:  ").lower()
-    # Manipulação de lista
-    listar_individual(pais)
+def listar_pais():
+    pais = input("Pais que deseja consultar: ")
+    selecao = pesquisar_time(pais)
+    lista_jogos = [
+        jogo
+        for jogo in jogos
+        if jogo.get("time1").get("time") == selecao.get("id")
+        or jogo.get("time2").get("time") == selecao.get("id")
+    ]
+    listar_times([selecao])
+    listar_jogos(lista_jogos)
 
 
+# Função 10 - Apagar Jogo
 def apagar_jogo():
-    pais_dois = ("Informe o segundo país participante do jogo que seja apagar:  ")
-    for jogo in jogos:
-        time1 = _pesquisar_time_por_codigo(jogo.get("time1").get("time"))
-        time2 = _pesquisar_time_por_codigo(jogo.get("time2").get("time"))
-
-# Função 10 - Apagar Jogo (O usuário deve informar um jogo que deseja apagar, e somente o jogo deve ser excluído do arquivo de jogos)
-def apagar_arquivo():
-    pais_um = ("Informe o primeiro país participante do jogo que seja apagar:  ")
-    apagar_jogo(pais_um)
-    os.remove("times_copa.json")
+    jogo_id = input("Qual código jogo que deseja remover: ")
+    global jogos
+    jogos = [jogo for jogo in jogos if jogo.get("id") != int(jogo_id)]
+    salvar_jogos_file()
+    print(f"Jogo {jogo_id} excluído!")
 
 
 # MENU ->
@@ -243,15 +249,11 @@ while opcao != 1:
 
     # Caso o usuário digite 9, ele poderá fazer uma pesquisa por país
     elif opcao == 9:
-        pesquisa_por_pais()
+        listar_pais()
 
     # Caso o usuário digite 10, ele poderá apagar o jogo inteiro
     elif opcao == 10:
-        print("Você está deletando o jogo...")
-        apagar_arquivo()
-        print("Arquivo deletado!")
-        print("Você está saindo do programa...")
-        quit()
+        apagar_jogo()
 
     # Caso o usuário digite uma opção diferente das propostas, ele terá que digitar novamente até colocar uma opção válida
     else:
