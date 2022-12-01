@@ -1,8 +1,0 @@
-[
-  { "id": 1, "Pais": "Brasil", "Abreviacao": "BRA", "Grupo": "G" },
-  { "id": 2, "Pais": "Argentina", "Abreviacao": "ARG", "Grupo": "G" },
-  { "id": 3, "Pais": "Alemanha", "Abreviacao": "ALE", "Grupo": "G" },
-  { "id": 4, "Pais": "Russia", "Abreviacao": "RUS", "Grupo": "G" },
-  { "id": 5, "Pais": "Portugal", "Abreviacao": "POR", "Grupo": "A" },
-  { "id": 6, "Pais": "Romenia", "Abreviacao": "ROM", "Grupo": "A" }
-]
