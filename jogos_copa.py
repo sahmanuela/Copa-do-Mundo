@@ -51,8 +51,8 @@ def novo_time():
     salvar_times = False
     # Controle para continuar a cadastrar novos times
     while not salvar_times:
-        pais = input("Insira o país da seleção: ")
-        abreviacao = input("Insira a abreviação do país: ")
+        pais = input("Insira o país da seleção: ").lower()
+        abreviacao = input("Insira a abreviação do país: ").upper()
         grupo = adicionar_grupo()
         times.append(
             {
@@ -112,9 +112,9 @@ def novo_jogo():
     salvar_jogos = False
     # Controle para continuar a cadastrar novos times
     while not salvar_jogos:
-        time1 = input("Informe o primeiro time:  ")
+        time1 = input("Informe o primeiro time:  ").lower()
         id_time1 = pesquisar_time(time1).get("id")
-        time2 = input("Informe o segundo time:  ")
+        time2 = input("Informe o segundo time:  ").lower()
         id_time2 = pesquisar_time(time2).get("id")
         gols1 = input("Informe o número de gols obtidos no jogo pelo time 1:  ")
         gols2 = input("Informe o número de gols obtidos no jogo pelo time 2:  ")
@@ -182,7 +182,7 @@ def listar_individual():
 
 # Função 9 - Pesquisa por país (Exibir: Adversários, gols e faltas)
 def listar_pais():
-    pais = input("Pais que deseja consultar: ")
+    pais = input("Pais que deseja consultar: ").lower()
     selecao = pesquisar_time(pais)
     lista_jogos = [
         jogo
