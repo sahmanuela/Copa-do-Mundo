@@ -1,1 +1,12 @@
-[{"id": 1, "time1": {"time": 1, "gols": 1, "faltas": 5}, "time2": {"time": 2, "gols": 7, "faltas": 2}}, {"id": 2, "time1": {"time": 4, "gols": 3, "faltas": 2}, "time2": {"time": 3, "gols": 1, "faltas": 2}}]
+[
+  {
+    "id": 1,
+    "time1": { "time": 1, "gols": 1, "faltas": 5 },
+    "time2": { "time": 2, "gols": 7, "faltas": 2 }
+  },
+  {
+    "id": 2,
+    "time1": { "time": 4, "gols": 3, "faltas": 2 },
+    "time2": { "time": 3, "gols": 1, "faltas": 2 }
+  }
+]
