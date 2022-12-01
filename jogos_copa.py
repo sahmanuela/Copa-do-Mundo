@@ -12,7 +12,7 @@ jogos_file_name = "jogos_copa.json"
 # Função feita para abrir/cadastrar o arquivo(banco) de times (equipes)
 def abrir_arquivo(file_name):
     if os.path.exists(file_name):
-        # Criação do arquivo times_copa.json
+        # Leitura do arquivo times_copa.json
         with open(file_name, "r") as file:
             if len(file.readline()) > 0:
                 # seek -> mover o cursor para o início do arquivo para poder carregar tudo ou salvar tudo a partir do inicio.
