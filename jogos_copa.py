@@ -28,6 +28,7 @@ jogos = abrir_arquivo(jogos_file_name)
 #  Função feita para salvar os times no arquivo times_copa.
 def salvar_times_file():
     with open(times_file_name, "w") as times_file:
+        # A função json.dump() converte um objeto Python em uma string json.
         json.dump(times, times_file)
 
 
