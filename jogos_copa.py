@@ -101,8 +101,10 @@ def listar_grupo():
 
 
 def pesquisar_time(nome_time):
-    return [time for time in times if time.get("Pais").lower() == nome_time.lower()][0]
-
+    paises = [time for time in times if time.get("Pais").lower() == nome_time.lower()]
+    if len(paises) > 0:
+       return paises[0]
+    return None
 
 def pesquisar_time_por_codigo(time_id):
     return [time for time in times if time.get("id") == time_id][0]
@@ -147,11 +149,6 @@ def exibir_n_equipes():
     qtd_times = len(times)
     print(f"O número de times existentes no banco é {qtd_times}")
 
-
-def pesquisar_time(nome_time):
-    return [time for time in times if time.get("Pais") == nome_time][0]
-
-
 # Função 8 - Listar jogos existentes no "banco" e suas respectivas informações
 def listar_jogos(lista_jogos=None):
     lista_jogos = lista_jogos if lista_jogos else jogos
@@ -187,15 +184,18 @@ def listar_individual():
 # Função 9 - Pesquisa por país (Exibir: Adversários, gols e faltas)
 def listar_pais():
     pais = input("Pais que deseja consultar: ").lower()
-    selecao = pesquisar_time(pais)
-    lista_jogos = [
-        jogo
-        for jogo in jogos
-        if jogo.get("time1").get("time") == selecao.get("id")
-        or jogo.get("time2").get("time") == selecao.get("id")
-    ]
-    listar_times([selecao])
-    listar_jogos(lista_jogos)
+    if pesquisar_time(pais) == None:
+        print('Time não cadastrado!')
+    else:
+        selecao = pesquisar_time(pais)
+        lista_jogos = [
+            jogo
+            for jogo in jogos
+            if jogo.get("time1").get("time") == selecao.get("id")
+            or jogo.get("time2").get("time") == selecao.get("id")
+        ]
+        listar_times([selecao])
+        listar_jogos(lista_jogos)
 
 
 # Função 10 - Apagar Jogo
