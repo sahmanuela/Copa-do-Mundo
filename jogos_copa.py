@@ -113,6 +113,9 @@ def novo_jogo():
     salvar_jogos = False
     # Controle para continuar a cadastrar novos times
     while not salvar_jogos:
+        if times == []:
+            print("Não existem seleções cadastradas.")
+            break
         time1 = input("Informe o primeiro time:  ").lower()
         id_time1 = pesquisar_time(time1).get("id")
         time2 = input("Informe o segundo time:  ").lower()
@@ -130,7 +133,7 @@ def novo_jogo():
         )
         if input("Cadastrar outra jogo(S/N): ").upper() != "S":
             salvar_jogos = True
-    salvar_jogos_file()
+        salvar_jogos_file()
 
 
 # Função 6 - Exibição do número de jogos cadastrados no "banco"
