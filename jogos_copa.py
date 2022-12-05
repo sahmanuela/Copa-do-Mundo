@@ -53,19 +53,22 @@ def novo_time():
     # Controle para continuar a cadastrar novos times
     while not salvar_times:
         pais = input("Insira o país da seleção: ").lower()
-        abreviacao = input("Insira a abreviação do país: ").upper()
-        grupo = adicionar_grupo()
-        times.append(
-            {
-                "id": len(times) + 1,
-                "Pais": pais,
-                "Abreviacao": abreviacao,
-                "Grupo": grupo,
-            }
-        )
-        if input("Cadastrar outra seleção(S/N): ").upper() != "S":
-            salvar_times = True
-    salvar_times_file()
+        if pesquisar_time(pais) != None:
+            print('Time já cadastrado!')
+        else:
+            abreviacao = input("Insira a abreviação do país: ").upper()
+            grupo = adicionar_grupo()
+            times.append(
+                {
+                    "id": len(times) + 1,
+                    "Pais": pais,
+                    "Abreviacao": abreviacao,
+                    "Grupo": grupo,
+                }
+            )
+            if input("Cadastrar outra seleção(S/N): ").upper() != "S":
+                salvar_times = True
+        salvar_times_file()
 
 
 # Complemento função 2 - Adicionar Grupo
