@@ -119,23 +119,29 @@ def novo_jogo():
             print("Não existem seleções cadastradas.")
             break
         time1 = input("Informe o primeiro time:  ").lower()
-        id_time1 = pesquisar_time(time1).get("id")
-        time2 = input("Informe o segundo time:  ").lower()
-        id_time2 = pesquisar_time(time2).get("id")
-        gols1 = input("Informe o número de gols obtidos no jogo pelo time 1:  ")
-        gols2 = input("Informe o número de gols obtidos no jogo pelo time 2:  ")
-        faltas1 = input("Informe o número de faltas marcadas no jogo pelo time 1:  ")
-        faltas2 = input("Informe o número de faltas marcadas no jogo pelo time 2:  ")
-        jogos.append(
-            {
-                "id": len(jogos) + 1,
-                "time1": {"time": id_time1, "gols": int(gols1), "faltas": int(faltas1)},
-                "time2": {"time": id_time2, "gols": int(gols2), "faltas": int(faltas2)},
-            }
-        )
-        if input("Cadastrar outra jogo(S/N): ").upper() != "S":
-            salvar_jogos = True
-        salvar_jogos_file()
+        if pesquisar_time(time1) == None:
+            print('Time não cadastrado!')
+        else:
+            id_time1 = pesquisar_time(time1).get("id")
+            time2 = input("Informe o segundo time:  ").lower()
+            if pesquisar_time(time2) == None:
+                print('Time não cadastrado!')
+            else:
+                id_time2 = pesquisar_time(time2).get("id")
+                gols1 = input("Informe o número de gols obtidos no jogo pelo time 1:  ")
+                gols2 = input("Informe o número de gols obtidos no jogo pelo time 2:  ")
+                faltas1 = input("Informe o número de faltas marcadas no jogo pelo time 1:  ")
+                faltas2 = input("Informe o número de faltas marcadas no jogo pelo time 2:  ")
+                jogos.append(
+                    {
+                        "id": len(jogos) + 1,
+                        "time1": {"time": id_time1, "gols": int(gols1), "faltas": int(faltas1)},
+                        "time2": {"time": id_time2, "gols": int(gols2), "faltas": int(faltas2)},
+                    }
+                )
+                if input("Cadastrar outra jogo(S/N): ").upper() != "S":
+                    salvar_jogos = True
+                salvar_jogos_file()
 
 
 # Função 6 - Exibição do número de jogos cadastrados no "banco"
